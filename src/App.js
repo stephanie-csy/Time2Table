@@ -7,6 +7,12 @@ import {
 import {
   AppBar,
   Avatar,
+  CssBaseline,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  makeStyles,
   Menu,
   MenuItem,
   Toolbar,
@@ -17,6 +23,31 @@ import HomePage from "./pages/HomePage";
 import PageLogin from "./pages/PageLogin";
 
 import "./styles.css";
+
+const drawerWidth = 120;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerContainer: {
+    overflow: 'auto',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+}));
 
 export default function App() {
   return (
@@ -37,6 +68,8 @@ export default function App() {
 }
 
 function AppShell() {
+  const classes = useStyles();
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -53,36 +86,59 @@ function AppShell() {
   };
 
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" style={{ flexGrow: 1, textAlign: "left" }}>
-          Time2Table
-        </Typography>
-        <IfFirebaseAuthed>
-          {({ user, firebase }) => (
-            <div>
-              <Avatar
-                alt={user.displayName}
-                src={user.photoURL}
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-              />
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={() => handleLogout(firebase)}>
-                  Logout
-                </MenuItem>
-              </Menu>
-            </div>
-          )}
-        </IfFirebaseAuthed>
-      </Toolbar>
-    </AppBar>
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar position="static" className={classes.appBar}>
+        <Toolbar>
+          <Typography variant="h6" noWrap>
+            Time2Table
+          </Typography>
+        </Toolbar>
+      </AppBar>
+        
+      <IfFirebaseAuthed>
+        {({ user, firebase }) => (
+          <div>
+            <Drawer
+              className={classes.drawer}
+              variant="permanent"
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+            >
+              <Toolbar />
+              <div className={classes.drawerContainer}>
+                <List>
+                  {['Home', 'Friends', 'Groups', 'Profile', 'Settings'].map((text, index) => (
+                    <ListItem button key={text}>
+                      <ListItemText primary={text} />
+                    </ListItem>
+                  ))}
+                </List>
+              </div>
+            </Drawer>
+
+            <Avatar
+              alt={user.displayName}
+              src={user.photoURL}
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+            />
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={() => handleLogout(firebase)}>
+                Logout
+              </MenuItem>
+            </Menu>
+          </div>
+        )}
+      </IfFirebaseAuthed>
+    </div>
   );
 }

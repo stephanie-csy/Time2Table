@@ -2,7 +2,6 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import React, { Component } from 'react';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import orderBy from 'lodash/orderBy';
 

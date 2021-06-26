@@ -4,12 +4,10 @@ import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 
 import DeleteIcon from '@material-ui/icons/Delete';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-// import TextField from '@material-ui/core/TextField';
+// import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+// import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 
 const row = (
   x,
@@ -44,7 +42,7 @@ const row = (
   );
 };
 
-export default ({
+const table = ({
   data,
   header,
   handleRemove,
@@ -69,13 +67,6 @@ export default ({
               onClick={() => handleSort(x.prop)}
             >
               <span>{x.name}</span>
-              {columnToSort === x.prop ? (
-                sortDirection === "asc" ? (
-                  <ArrowDropUpIcon />
-                ) : (
-                  <ArrowDropDownIcon />
-                )
-              ) : null}
             </div>
           </TableCell>
         ))}
@@ -98,3 +89,5 @@ export default ({
     </TableBody>
   </Table>
 );
+
+export default table;

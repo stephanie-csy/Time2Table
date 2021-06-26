@@ -1,10 +1,8 @@
-import Box from "../components/Box";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import React, { Component } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-//import '../components/tap_events'
 import orderBy from 'lodash/orderBy';
 
 import Select from '@material-ui/core/Select';
@@ -138,10 +136,6 @@ const invertDirection = {
 
         <MuiThemeProvider>
           <div className="FriendsPage">
-              {/* onSubmit={submission =>
-                this.setState({
-                  data: [...this.state.data, submission]
-                }) */}
                 <Button
                   display="flex"
                   alignItems="flex-start"

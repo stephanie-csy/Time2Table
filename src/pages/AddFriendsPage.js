@@ -8,6 +8,7 @@ function AddFriendsPage() {
                 <body>
                     Add a friend to start time2tabling together!
                 </body>
+                
         </Box>
     );
 }

@@ -199,15 +199,15 @@ const invertDirection = {
               )}
               header={[
                 {
-                  name: "First name",
+                  name: <b>First Name</b>,
                   prop: "firstName"
                 },
                 {
-                  name: "Last name",
+                  name: <b>Last Name</b>,
                   prop: "lastName"
                 },
                 {
-                  name: "Email",
+                  name: <b>Email</b>,
                   prop: "email"
                 }
               ]}

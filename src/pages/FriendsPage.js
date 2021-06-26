@@ -11,9 +11,6 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
-//import logo from "./logo.svg";
-//import "./FriendsPage.css";
-// import Form from "./Form";
 import Table from "./Table";
 
 const invertDirection = {
@@ -178,14 +175,14 @@ const invertDirection = {
                 >
 
                   <MenuItem value="firstName">First Name</MenuItem>
-                  <MenuItem value="lastName">Last Name</MenuItem>
+                  {/* <MenuItem value="lastName">Last Name</MenuItem>
                   <MenuItem value="username">Username</MenuItem>
-                  <MenuItem value="email">Email</MenuItem>
+                  <MenuItem value="email">Email</MenuItem> */}
                 </Select>
-
-
               </div>
             </div>
+
+
             <Table
               handleSort={this.handleSort}
               handleRemove={this.handleRemove}
@@ -215,10 +212,6 @@ const invertDirection = {
                   name: "Last name",
                   prop: "lastName"
                 },
-                // {
-                //   name: "Username",
-                //   prop: "username"
-                // },
                 {
                   name: "Email",
                   prop: "email"
@@ -230,113 +223,5 @@ const invertDirection = {
       );
     }
   }
-  
-
-
-
-
-// function FriendsPage() {
-//     // const classes = useStyles();
-//     const lowerCaseQuery = this.state.query.toLowerCase();
-//     return (
-//         <div>
-//             <Button
-//                 variant="contained"
-//                 color="primary"
-//                 >                            
-//                     <Link to="/AddFriendsPage">Add Friend</Link> 
-//             </Button>
-        
-//             <Box>
-//                 <h1>Current Friends:</h1>
-//             </Box>
-
-
-//     <MuiThemeProvider>
-//         <div className="FriendsPage">
-//           {/* <Form
-//             onSubmit={submission =>
-//               this.setState({
-//                 data: [...this.state.data, submission]
-//               })
-//             }
-//           /> */}
-//           <div style={{ display: "flex" }}>
-//             <div style={{ display: "flex", margin: "auto" }}>
-//               <TextField
-//                 hintText="Query"
-//                 floatingLabelText="Query"
-//                 value={this.state.query}
-//                 onChange={e => this.setState({ query: e.target.value })}
-//                 floatingLabelFixed
-//               />
-//               <Select
-//                 style={{ marginLeft: "1em" }}
-//                 floatingLabelText="Select a column"
-//                 value={this.state.columnToQuery}
-//                 onChange={(event, index, value) =>
-//                   this.setState({ columnToQuery: value })
-//                 }
-//               >
-//                 <MenuItem value="firstName" primaryText="First Name" />
-//                 <MenuItem value="lastName" primaryText="Last Name" />
-//                 <MenuItem value="username" primaryText="Username" />
-//                 <MenuItem value="email" primaryText="Email" />
-//               </Select>
-//             </div>
-//           </div>
-//           <Table
-//             handleSort={this.handleSort}
-//             handleRemove={this.handleRemove}
-//             startEditing={this.startEditing}
-//             editIdx={this.state.editIdx}
-//             stopEditing={this.stopEditing}
-//             handleSave={this.handleSave}
-//             columnToSort={this.state.columnToSort}
-//             sortDirection={this.state.sortDirection}
-//             data={orderBy(
-//               this.state.query
-//                 ? this.state.data.filter(x =>
-//                     x[this.state.columnToQuery]
-//                       .toLowerCase()
-//                       .includes(lowerCaseQuery)
-//                   )
-//                 : this.state.data,
-//               this.state.columnToSort,
-//               this.state.sortDirection
-//             )}
-//             header={[
-//               {
-//                 name: "First name",
-//                 prop: "firstName"
-//               },
-//               {
-//                 name: "Last name",
-//                 prop: "lastName"
-//               },
-//               {
-//                 name: "Username",
-//                 prop: "username"
-//               },
-//               {
-//                 name: "Email",
-//                 prop: "email"
-//               }
-//             ]}
-//           />
-//         </div>
-//       </MuiThemeProvider>
-
-
-
-            
-
-
-            
-//         </div>
-        
-//     );
-// }
-
 
 export default FriendsPage;

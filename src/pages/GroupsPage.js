@@ -9,11 +9,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
-<<<<<<< HEAD
 import Table from "../components/Table";
-=======
-import Table from "./Table";
->>>>>>> 38a644dc0ded4179ec4386fcb1957f70d7006e59
 
 const invertDirection = {
     asc: "desc",

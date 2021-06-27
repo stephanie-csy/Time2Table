@@ -1,5 +1,7 @@
 import Box from "../components/Box";
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
 
 function HomePage() {
     return (
@@ -15,23 +17,25 @@ function HomePage() {
                     variant="contained"
                     color="primary"
                 >
-                    Add friend
+                    <Link to="/AddFriendsPage">Add Friend</Link>
                 </Button>
             </Box>
 
             <Box>
                 <h1>Activity</h1>
+                
+                <div style={{ display: "flex", flexFlow: "row nowrap" }}>
+                    <body>
+                        You have a pending friend request from Jason.
+                    </body>
 
-                <body>
-                    You have a pending friend request from Jason.
-                </body>
-
-                <Button
-                    variant="contained"
-                    color="primary"
-                >
-                    Accept
-                </Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                    >
+                        Accept
+                    </Button>
+                </div>
             </Box>
 
             <Box>

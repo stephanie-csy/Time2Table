@@ -22,17 +22,17 @@ function HomePage() {
 
             <Box>
                 <h1>Activity</h1>
+                
+                    <h6>
+                        You have a pending friend request from Jason.
+                    </h6>
 
-                <h6>
-                    You have a pending friend request from Jason.
-                </h6>
-
-                <Button
-                    variant="contained"
-                    color="primary"
-                >
-                    Accept
-                </Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                    >
+                        Accept
+                    </Button>
             </Box>
 
             <Box>

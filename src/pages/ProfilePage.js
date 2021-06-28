@@ -1,18 +1,13 @@
 import Box from "../components/Box";
-import { Timetable } from "../components/Timetable";
+import { Schedule } from "../components/Schedule";
 
 function ProfilePage() {
     return (
-        <div>
-            <Timetable />
-            <Box>
-                <h1>Your Profile</h1>
-                    
-                    <body>
-                        Edit your profile!
-                    </body>
-            </Box>
-        </div>
+        <Box>
+            <h1>Your Schedule</h1>
+            
+            <Schedule />
+        </Box>
         
     );
 }

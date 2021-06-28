@@ -5,9 +5,9 @@ function CreateGroupPage() {
         <Box>
             <h1>Create Group</h1>
                 
-                <body>
+                <h6>
                     Create a group with your friends to start time2tabling together!
-                </body>
+                </h6>
         </Box>
     );
 }

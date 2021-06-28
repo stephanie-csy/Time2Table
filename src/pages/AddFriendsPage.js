@@ -5,9 +5,9 @@ function AddFriendsPage() {
         <Box>
             <h1>Add Friends</h1>
                 
-                <body>
+                <h6>
                     Add a friend to start time2tabling together!
-                </body>
+                </h6>
                 
         </Box>
     );

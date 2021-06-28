@@ -1,5 +1,6 @@
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import Box from "../components/Box";
 
 import React, { Component } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
@@ -143,9 +144,10 @@ const invertDirection = {
                   color="primary"
                   style={{ height: 50 }}
                   >                            
-                <Link to="/AddFriendsPage">Add Friend</Link> 
+                <Link to="/AddFriendsPage" style={{ color: '#FFF' }}>Add Friend</Link> 
                 </Button>
                 
+                <Box>
                 <h1>Current Friends:</h1>
 
             <div style={{ display: "flex" }}>
@@ -212,6 +214,7 @@ const invertDirection = {
                 }
               ]}
             />
+            </Box>
           </div>
         </MuiThemeProvider>
       );

@@ -5,9 +5,9 @@ function SettingsPage() {
         <Box>
             <h1>Settings</h1>
                 
-                <body>
+                <h6>
                     Change your settings!
-                </body>
+                </h6>
         </Box>
     );
 }

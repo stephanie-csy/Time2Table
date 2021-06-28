@@ -1,5 +1,6 @@
 import Box from "../components/Box";
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 function HomePage() {
     return (
@@ -7,24 +8,24 @@ function HomePage() {
             <Box>
                 <h1>Getting Started</h1>
                 
-                <body>
+                <h6>
                     Add a friend to start time2tabling together!
-                </body>
+                </h6>
 
                 <Button
                     variant="contained"
                     color="primary"
                 >
-                    Add friend
+                    <Link to="/AddFriendsPage" style={{ color: '#FFF' }}>Add Friend</Link>
                 </Button>
             </Box>
 
             <Box>
                 <h1>Activity</h1>
 
-                <body>
+                <h6>
                     You have a pending friend request from Jason.
-                </body>
+                </h6>
 
                 <Button
                     variant="contained"
@@ -37,9 +38,9 @@ function HomePage() {
             <Box>
                 <h1>Upcoming Meet Ups</h1>
 
-                <body>
+                <h6>
                     Tuesday, 25 May 2021 13:00 - 15:00 with Besties
-                </body>
+                </h6>
             </Box>
         </>
     );

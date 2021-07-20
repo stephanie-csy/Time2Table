@@ -14,7 +14,6 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { 
-  HomePage, 
   FriendsPage, 
   GroupsPage, 
   ProfilePage, 
@@ -22,6 +21,8 @@ import {
   AddFriendsPage, 
   CreateGroupPage 
 } from "../pages";
+
+import HomePage from "../HomePage"
 
 const drawerWidth = 180;
 

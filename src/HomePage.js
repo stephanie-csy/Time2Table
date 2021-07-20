@@ -1,4 +1,5 @@
-import Box from "../components/Box";
+
+import Box from "./components/Box";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 

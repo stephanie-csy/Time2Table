@@ -49,7 +49,6 @@ function MenuAppBar() {
     };
 
     async function handleLogout() {
-        setError("")
     
         try {
           await logout()
@@ -86,7 +85,7 @@ function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
                 >
-                  <MenuItem onClick={handleLogout}>
+                <MenuItem onClick={handleLogout}>
                   Logout
                 </MenuItem>
 

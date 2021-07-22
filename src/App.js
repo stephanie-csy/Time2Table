@@ -1,15 +1,13 @@
 import React from "react"
-
 import SignUpPage from "./SignUpPage"
 import { AuthProvider } from "./AuthContext"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Dashboard from "./Dashboard"
 import PageLogin from "./PageLogin"
 import PrivateRoute from "./PrivateRoute"
-import ForgotPassword from "./ForgotPassword"
+// import ForgotPassword from "./ForgotPassword"
 
-import "./styles.css";
-
+// import "./styles.css";
 
 function App() {
   return (
@@ -21,12 +19,12 @@ function App() {
                 <PrivateRoute exact path="/" component={Dashboard} />
                 <Route path="/signup" component={SignUpPage} />
                 <Route path="/login" component={PageLogin} />
-                <Route path="/forgot-password" component={ForgotPassword} />
+                {/* <Route path="/forgot-password" component={ForgotPassword} /> */}
               </Switch>
+              {/* <SnapshotFirebase /> */}
             </AuthProvider>
           </Router>
         </div>
-      // </div>
   );
 }
 

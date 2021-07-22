@@ -1,36 +1,3 @@
-// import { Button } from "@material-ui/core";
-// import { FirebaseAuthConsumer } from "@react-firebase/auth";
-
-// function PageLogin() {
-//   const handleGoogleSignIn = (firebase) => {
-//     const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-//     firebase.auth().signInWithPopup(googleAuthProvider);
-//     // firebase.firestore().collection("users")
-//     // .doc(firebase.auth().currentUser.uid)
-//     // .set({
-//     // })
-//   };
-
-//   return (
-//     <>
-//       <h1>Login</h1>
-//       <FirebaseAuthConsumer>
-//         {({ firebase }) => (
-//           <Button
-//             variant="contained"
-//             color="primary"
-//             onClick={() => handleGoogleSignIn(firebase)}
-//           >
-//             Sign in with Google
-//           </Button>
-//         )}
-//       </FirebaseAuthConsumer>
-//     </>
-//   );
-// }
-
-// export default PageLogin;
-
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "./AuthContext"
@@ -79,7 +46,7 @@ export default function Login() {
             </Button>
           </Form>
           <div className="w-100 text-center mt-3">
-            <Link to="/forgot-password">Forgot Password?</Link>
+            {/* <Link to="/forgot-password">Forgot Password?</Link> */}
           </div>
         </Card.Body>
       </Card>

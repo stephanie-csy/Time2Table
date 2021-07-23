@@ -17,7 +17,7 @@ const invertDirection = {
     desc: "asc"
   };
   
-  class FriendsPage extends Component {
+  class GroupsPage extends Component {
 
     state = {
       data: [
@@ -85,7 +85,7 @@ const invertDirection = {
       return (
 
         <MuiThemeProvider>
-          <div className="FriendsPage">
+          <div className="GroupsPage">
                 <Button
                   display="flex"
                   alignItems="flex-start"
@@ -171,4 +171,4 @@ const invertDirection = {
     }
   }
 
-export default FriendsPage;
+export default GroupsPage;

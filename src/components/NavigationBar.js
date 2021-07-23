@@ -22,7 +22,7 @@ import {
   CreateGroupPage 
 } from "../pages";
 
-import HomePage from "../HomePage"
+import HomePage from "../pages/HomePage"
 
 const drawerWidth = 180;
 

@@ -3,9 +3,6 @@ import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "./AuthContext"
 import { Link, useHistory } from "react-router-dom"
 
-import config from "./config/firebase";
-import { v4 as uuidv4 } from "uuid";
-
 export default function SignUpPage() {
   const nameRef = useRef()
   const emailRef = useRef()
@@ -20,27 +17,12 @@ export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const ref = config.firestore().collection("users");
-
-  // ADD FUNCTION
-  function addUser(newUser) {
-    ref
-      //.doc() use if for some reason you want that firestore generates the id
-      .doc(newUser.id)
-      .set(newUser)
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-
   async function handleSubmit(e) {
     e.preventDefault()
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
-
-
     try {
       setError("")
       setLoading(true)
@@ -49,9 +31,6 @@ export default function SignUpPage() {
     } catch {
       setError("Failed to create an account (Passwords have to have a minimum of 6 characters)")
     }
-
-    addUser({ name, email, password, id: uuidv4() })
-
     setLoading(false)
   }
 

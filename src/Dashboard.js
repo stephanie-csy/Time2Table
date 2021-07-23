@@ -15,19 +15,19 @@ import "./styles.css";
 
 
 export default function Dashboard() {
-  return (
-    <>
-    <MenuAppBar />
-      <div style={{ maxWidth: "64rem", margin: "0 auto" }}>
-        <NavigationBar />
-      </div>
-    {/* <h2 className="text-center mb-4">Welcome, {currentUser.email}!</h2> */}
-    {/* <div className="w-100 text-center mt-2"></div> */}
+    return (
+      <>
+      <MenuAppBar />
+        <div style={{ maxWidth: "64rem", margin: "0 auto" }}>
+          <NavigationBar />
+        </div>
+      {/* <h2 className="text-center mb-4">Welcome, {currentUser.email}!</h2> */}
+      {/* <div className="w-100 text-center mt-2"></div> */}
+        
+      </>
       
-    </>
-    
-  )
-}
+    )
+  }
 
 function MenuAppBar() {
 

@@ -5,7 +5,7 @@ import { db } from "../config/firebase"
 
 
 function AddFriendsPage() {
-    const [receivingFriend, setReceivingFriend] = useState(""); // make into array?
+    const [receivingFriend, setReceivingFriend] = useState("");
     const sendingUser = auth.currentUser.email;
 
     function sendFriendRequest() {
@@ -26,7 +26,6 @@ function AddFriendsPage() {
         db.collection('users').doc(sendingUser).update({
             pendingSentFriendReqs: receivingFriend })
         }
-
     }
 
     return (
@@ -45,7 +44,7 @@ function AddFriendsPage() {
                 />
 
 
-                <button onClick={sendFriendRequest}>
+                <button onClick={sendFriendRequest} >
                     Submit
                 </button>
         </Box>

@@ -13,7 +13,7 @@ class HomePage extends React.Component {
 
     state = { 
         users: null,
-        item: null
+        item: null,
     }
 
     componentDidMount(){
@@ -54,12 +54,27 @@ class HomePage extends React.Component {
                 friend: senderEmail
             })
         
+
             //sender
             const newFriendshipSenderRef = db.collection('users').doc(senderEmail).collection('friendships').doc(receiverEmail);
             newFriendshipSenderRef.set({
                 friend: receiverEmail
             })
 
+        }
+
+        function declineFriend() {
+            // clear pending field of both parties
+        
+            // receiever
+            db.collection('users').doc(receiverEmail).update({
+                pendingReceivedFriendReqs: ''
+            })
+        
+            // sender
+            db.collection('users').doc(senderEmail).update({
+                pendingSentFriendReqs: ''
+            })
         }
 
         return (
@@ -81,21 +96,26 @@ class HomePage extends React.Component {
     
                 <Box>
                     
-
                     <h1>You Have Pending Friend Requests From:</h1>
+                     
                     {this.state.users &&
                     this.state.users.map( user => {
                         return (
                             <div>
                                 <h4>{user}</h4>
+
                             </div>
                         )
-                    })}
-                    <button onClick={acceptFriend}>
+                    }) }
+
+                        <button onClick={acceptFriend} >                        
                         Accept
-                    </button>
- 
-    
+                        </button>
+
+                        <button onClick={declineFriend}>
+                            Decline
+                        </button>
+                    
                 </Box>
     
                 <Box>

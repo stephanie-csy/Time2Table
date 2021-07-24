@@ -13,16 +13,12 @@ import Menu from '@material-ui/core/Menu';
 import { CssBaseline } from '@material-ui/core'
 import "./styles.css";
 
-import { db } from "./config/firebase"
-import { auth } from "./config/firebase"
-
-
 export default function Dashboard() {
 
-    const friendshipRef = db.collection('users').doc(auth.currentUser.email).collection('friendships').doc('test@gmail.com');
-    friendshipRef.set({
-        friend: 'test@gmail.com'
-    });
+    // const friendshipRef = db.collection('users').doc(auth.currentUser.email).collection('friendships').doc('test@gmail.com');
+    // friendshipRef.set({
+    //     friend: 'test@gmail.com'
+    // });
 
     return (
       <>

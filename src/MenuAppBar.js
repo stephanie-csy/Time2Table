@@ -1,7 +1,6 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useAuth } from "./AuthContext"
 import { useHistory } from "react-router-dom"
-import NavigationBar from "./components/NavigationBar";
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,32 +10,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { CssBaseline } from '@material-ui/core'
-import "./styles.css";
-
-import { db } from "./config/firebase"
-import { auth } from "./config/firebase"
-
-
-export default function Dashboard() {
-
-    const friendshipRef = db.collection('users').doc(auth.currentUser.email).collection('friendships').doc('test@gmail.com');
-    friendshipRef.set({
-        friend: 'test@gmail.com'
-    });
-
-    return (
-      <>
-      <MenuAppBar />
-        <div style={{ maxWidth: "64rem", margin: "0 auto" }}>
-          <NavigationBar />
-        </div>
-      {/* <h2 className="text-center mb-4">Welcome, {currentUser.email}!</h2> */}
-      {/* <div className="w-100 text-center mt-2"></div> */}
-        
-      </>
-      
-    )
-  }
 
 function MenuAppBar() {
 
@@ -103,3 +76,5 @@ function MenuAppBar() {
         </AppBar>
     );
   }
+
+  export default MenuAppBar;

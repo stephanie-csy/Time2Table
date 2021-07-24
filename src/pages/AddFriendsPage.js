@@ -1,39 +1,42 @@
 import React, { useState } from "react";
 import Box from "../components/Box";
-// import TextField from '@material-ui/core/TextField';
-// import { Button } from "@material-ui/core";
-
-// import { SignUpPage } from "../SignUpPage"
-// import { useAuth } from "../AuthContext"
-// import config from "../config/firebase";
-// import { v4 as uuidv4 } from "uuid";
-// import { GetAppOutlined } from "@material-ui/icons";
-
 import { auth } from "../config/firebase"
 import { db } from "../config/firebase"
 
 
 function AddFriendsPage() {
-    const [receivingFriend, setReceivingFriend] = useState("");
-    const sendingUser = auth.currentUser.uid;
-    // const receivingFriendUID = db.collection('users').where('email', '==', receivingFriend).get();
+    const [receivingFriend, setReceivingFriend] = useState(""); // make into array?
+    const sendingUser = auth.currentUser.email;
+
+    function sendFriendRequest() {
+        if (sendingUser === receivingFriend) {
+            return <h1>Something went wrong.</h1>; //idky this doesnt show up
+        } else {
+
+        // CAN ONLY REQ 1 FRIEND AT A TIME...
+
+        db.collection('users').where('email', '==', receivingFriend).get().then(querySnapshot => {
+            querySnapshot.forEach(documentSnapshot => {
+                documentSnapshot.ref.update({
+                    pendingReceivedFriendReqs: sendingUser
+                })                
+            });
+        });
+
+        db.collection('users').doc(sendingUser).update({
+            pendingSentFriendReqs: receivingFriend })
+        }
+
+    }
 
     return (
         <Box>
+        
             <h1>Add Friends</h1>
                 
                 <h6>
-                    Add a friend to start time2tabling together!
+                    Add a friend to start time2tabling together! Enter their email below:
                 </h6>
-                {/* <TextField id="standard-basic" label="Search for your friend" />
-                <h1> </h1>
-                <Button
-                    variant="contained"
-                    color="primary"
-                >
-                    Add Friend
-                </Button> */}
-                
                 
                 <input
                     type="text"
@@ -41,44 +44,13 @@ function AddFriendsPage() {
                     onChange={(e) => setReceivingFriend(e.target.value)}
                 />
 
-                <button
-                onClick={() =>
-                    db.collection('users').doc(sendingUser).update({
-                        pendingSentFriendReqs: receivingFriend,
-                    }) }>
+
+                <button onClick={sendFriendRequest}>
                     Submit
                 </button>
-                {/* <h6>{receivingFriendUID}</h6> */}
         </Box>
 
     );
 }
 
 export default AddFriendsPage;
-
-
-// import Box from "../components/Box";
-// import TextField from '@material-ui/core/TextField';
-// import { Button } from "@material-ui/core";
-
-// function AddFriendsPage() {
-//     return (
-//         <Box>
-//             <h1>Add Friends</h1>
-                
-//                 <h6>
-//                     Add a friend to start time2tabling together!
-//                 </h6>
-//                 <TextField id="standard-basic" label="Search for your friend" />
-//                 <h1> </h1>
-//                 <Button
-//                         variant="contained"
-//                         color="primary"
-//                     >
-//                         Add Friend
-//                     </Button>
-//         </Box>
-//     );
-// }
-
-// export default AddFriendsPage;

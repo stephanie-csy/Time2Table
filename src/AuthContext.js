@@ -12,19 +12,20 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
-  const user = auth.currentUser;
+  // const user = auth.currentUser;
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
-    .then((resp) => {
-      return db.collection('users').doc(resp.user.uid).set({
+    .then((resp) => { return db.collection('users').doc(resp.user.email)
+      .set({
         email: email,
         password: password,
-        uid: user,
+        // uid: user,
         pendingSentFriendReqs: "",
         pendingReceivedFriendReqs: ""
       })
-    })
+    }
+    )
   }
 
   function login(email, password) {

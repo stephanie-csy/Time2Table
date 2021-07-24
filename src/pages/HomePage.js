@@ -1,81 +1,118 @@
+import React from "react"
 import Box from "../components/Box";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-// import { db } from "../config/firebase"
+import "../styles.css";
+
+import { db } from "../config/firebase"
+import { auth } from "../config/firebase"
 // import { useAuth } from "../AuthContext"
 
-// import config from "../config/firebase";
-// import { v4 as uuidv4 } from "uuid";
+class HomePage extends React.Component {
 
-function HomePage() {
-//     const [friendships, setFriendships] = useState([]);
-//     const [loading, setLoading] = useState(false);
-//     const [friend1, setFriend1] = useState("");
-//     const [friend2, setFriend2] = useState("");
+    state = { 
+        users: null,
+        item: null
+    }
 
-//   // ADD FUNCTION
-//   function addFriendship(newFriendship) {
-//     ref
-//       //.doc() use if for some reason you want that firestore generates the id
-//       .doc(newFriendship.id)
-//       .set(newFriendship)
-//       .catch((err) => {
-//         console.error(err);
-//       });
-//   }
+    componentDidMount(){
+        db.collection('users').doc(auth.currentUser.email).get().then(
+            doc => { 
+                const users = []
+                users.push(doc.data().pendingReceivedFriendReqs)
+                this.setState({ item: doc.data().pendingReceivedFriendReqs })
+                this.setState({ users: users })
+            }
+        )
+        .catch( error => console.log(error))
+    }
 
-// const { currentUser } = useAuth();
+    render() {
+        const receiverEmail = auth.currentUser.email
+        const senderEmail = this.state.item
 
-// db.collection("users").doc(currentUser).set({
-//     name: "test"
-//   });
+        function acceptFriend() {
 
-    return (
-        <>
-            <Box>
-                <h1>Getting Started</h1>
-                
-                <h6>
-                    Add a friend to start time2tabling together!
-                </h6>
+            // clear pending field of both parties
 
-                <Button
-                    variant="contained"
-                    color="primary"
-                >
-                    <Link to="/AddFriendsPage" style={{ color: '#FFF' }}>Add Friend</Link>
-                </Button>
-            </Box>
+            // receiever
+            db.collection('users').doc(receiverEmail).update({
+                pendingReceivedFriendReqs: ''
+            })
+        
+            // sender
+            db.collection('users').doc(senderEmail).update({
+                pendingSentFriendReqs: ''
+            })
+        
+            // add document to friendship subcollection of both parties
+        
+            //receiver
+            const newFriendshipReceiverRef = db.collection('users').doc(receiverEmail).collection('friendships').doc(senderEmail);
+            newFriendshipReceiverRef.set({
+                friend: senderEmail
+            })
+        
+            //sender
+            const newFriendshipSenderRef = db.collection('users').doc(senderEmail).collection('friendships').doc(receiverEmail);
+            newFriendshipSenderRef.set({
+                friend: receiverEmail
+            })
 
-            <Box>
-                <h1>Activity</h1>
-                
+        }
+
+        return (
+            <>
+                <Box>
+                    <h1>Getting Started</h1>
+                    
                     <h6>
-                        You have a pending friend request from {}.
+                        Add a friend to start time2tabling together!
                     </h6>
-{/* 
-                    <button onClick={() => addSchool({ title, desc, id: uuidv4() })}>
-                    Submit
-                    </button> */}
-
-                    {/* <Button
+    
+                    <Button
                         variant="contained"
                         color="primary"
                     >
+                        <Link to="/AddFriendsPage" style={{ color: '#FFF' }}>Add Friend</Link>
+                    </Button>
+                </Box>
+    
+                <Box>
+                    
+
+                    <h1>You Have Pending Friend Requests From:</h1>
+                    {this.state.users &&
+                    this.state.users.map( user => {
+                        return (
+                            <div>
+                                <h4>{user}</h4>
+                            </div>
+                        )
+                    })}
+                    <button onClick={acceptFriend}>
                         Accept
-                    </Button> */}
-            </Box>
+                    </button>
+ 
+    
+                </Box>
+    
+                <Box>
+                    <h1>Upcoming Meet Ups</h1>
+    
+                    <h6>
+                        Tuesday, 25 May 2021 13:00 - 15:00 with Besties
+                    </h6>
+                </Box>
+            </>
+        );
 
-            <Box>
-                <h1>Upcoming Meet Ups</h1>
-
-                <h6>
-                    Tuesday, 25 May 2021 13:00 - 15:00 with Besties
-                </h6>
-            </Box>
-        </>
-    );
+        
+    }
 }
+
+
+
 
 export default HomePage;

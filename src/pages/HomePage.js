@@ -7,6 +7,7 @@ import "../styles.css";
 
 import { db } from "../config/firebase"
 import { auth } from "../config/firebase"
+import { isNull } from "lodash";
 // import { useAuth } from "../AuthContext"
 
 class HomePage extends React.Component {
@@ -14,15 +15,22 @@ class HomePage extends React.Component {
     state = { 
         users: null,
         item: null,
+        gotPending: false
     }
 
     componentDidMount(){
         db.collection('users').doc(auth.currentUser.email).get().then(
             doc => { 
                 const users = []
-                users.push(doc.data().pendingReceivedFriendReqs)
+                if (doc.data().pendingReceivedFriendReqs !== "") {
+                    users.push(doc.data().pendingReceivedFriendReqs)
+                }
                 this.setState({ item: doc.data().pendingReceivedFriendReqs })
                 this.setState({ users: users })
+                if (this.state.users !== null && this.state.users.length !== 0) {
+                    this.setState({ gotPending: true })
+                }
+                console.log(this.state.users)
             }
         )
         .catch( error => console.log(error))
@@ -31,6 +39,7 @@ class HomePage extends React.Component {
     render() {
         const receiverEmail = auth.currentUser.email
         const senderEmail = this.state.item
+        const gotPending = this.state.gotPending
 
         function acceptFriend() {
 
@@ -103,18 +112,24 @@ class HomePage extends React.Component {
                         return (
                             <div>
                                 <h4>{user}</h4>
-
                             </div>
                         )
                     }) }
 
-                        <button onClick={acceptFriend} >                        
-                        Accept
-                        </button>
+                    <div>
+                    {gotPending ? 
+                        (<React.Fragment>
+                            <button onClick={acceptFriend} >                        
+                                Accept
+                            </button>
 
-                        <button onClick={declineFriend}>
-                            Decline
-                        </button>
+                            <button onClick={declineFriend}>
+                                Decline
+                            </button>
+                        </React.Fragment>) 
+                        : (<p></p>)
+                    }
+                    </div>
                     
                 </Box>
     

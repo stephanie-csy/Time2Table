@@ -30,7 +30,6 @@ class HomePage extends React.Component {
                 if (this.state.users !== null && this.state.users.length !== 0) {
                     this.setState({ gotPending: true })
                 }
-                console.log(this.state.users)
             }
         )
         .catch( error => console.log(error))
@@ -104,21 +103,17 @@ class HomePage extends React.Component {
                 </Box>
     
                 <Box>
-                    
-                    <h1>You Have Pending Friend Requests From:</h1>
-                     
-                    {this.state.users &&
-                    this.state.users.map( user => {
-                        return (
-                            <div>
-                                <h4>{user}</h4>
-                            </div>
-                        )
-                    }) }
-
-                    <div>
                     {gotPending ? 
                         (<React.Fragment>
+                            <h1>You Have Pending Friend Requests From:</h1>
+                            {this.state.users &&
+                            this.state.users.map( user => {
+                                return (
+                                    <div>
+                                        <h4>{user}</h4>
+                                    </div>
+                                )
+                            }) }
                             <button onClick={acceptFriend} >                        
                                 Accept
                             </button>
@@ -127,10 +122,8 @@ class HomePage extends React.Component {
                                 Decline
                             </button>
                         </React.Fragment>) 
-                        : (<p></p>)
+                        : (<h1>You Have No Pending Friend Requests</h1>)
                     }
-                    </div>
-                    
                 </Box>
     
                 <Box>

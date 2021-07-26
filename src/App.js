@@ -5,6 +5,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Dashboard from "./Dashboard"
 import PageLogin from "./PageLogin"
 import PrivateRoute from "./PrivateRoute"
+
+// import UsersProfile from "./pages/UsersProfile"
+
+// import { auth } from "./config/firebase"
+
 // import ForgotPassword from "./ForgotPassword"
 
 // import "./styles.css";
@@ -20,8 +25,8 @@ function App() {
                 <Route path="/signup" component={SignUpPage} />
                 <Route path="/login" component={PageLogin} />
                 {/* <Route path="/forgot-password" component={ForgotPassword} /> */}
+                {/* <Route exact path={`/profile/${auth.currentUser.email}`} component={UsersProfile} /> */}
               </Switch>
-              {/* <SnapshotFirebase /> */}
             </AuthProvider>
           </Router>
         </div>

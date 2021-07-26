@@ -9,12 +9,17 @@ function AddFriendsPage() {
     const sendingUser = auth.currentUser.email;
 
     function sendFriendRequest() {
+        //cannot send urself
         if (sendingUser === receivingFriend) {
-            return <h1>Something went wrong.</h1>; //idky this doesnt show up
+            return (
+            <div>
+            <h1>Unable to send request to own email</h1>
+            </div>
+            ); //idky this doesnt show up
+
         } else {
 
-        // CAN ONLY REQ 1 FRIEND AT A TIME...
-
+        // put sender's request in receiver's pendingReceivedFriendReqs
         db.collection('users').where('email', '==', receivingFriend).get().then(querySnapshot => {
             querySnapshot.forEach(documentSnapshot => {
                 documentSnapshot.ref.update({
@@ -25,7 +30,9 @@ function AddFriendsPage() {
 
         db.collection('users').doc(sendingUser).update({
             pendingSentFriendReqs: receivingFriend })
-        }
+        }      
+        
+        setReceivingFriend("")
     }
 
     return (
@@ -43,10 +50,10 @@ function AddFriendsPage() {
                     onChange={(e) => setReceivingFriend(e.target.value)}
                 />
 
-
                 <button onClick={sendFriendRequest} >
                     Submit
                 </button>
+
         </Box>
 
     );

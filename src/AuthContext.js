@@ -23,7 +23,9 @@ export function AuthProvider({ children }) {
         password: password,
         // uid: user,
         pendingSentFriendReqs: "",
-        pendingReceivedFriendReqs: ""
+        pendingReceivedFriendReqs: "",
+        pendingGroupReqsUser: "",
+        pendingGroupReqsGroupName: ""
       })
     }
     )

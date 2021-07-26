@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import Box from "../components/Box";
 import { Schedule } from "../components/Schedule";
 // import { useAuth } from "../AuthContext"
@@ -7,11 +7,17 @@ import Typography from '@material-ui/core/Typography';
 // import IconButton from '@material-ui/core/IconButton';
 // import AccountCircle from '@material-ui/icons/AccountCircle';
 // import EditIcon from '@material-ui/icons/Edit';
+
+import { Link } from 'react-router-dom';
 import { auth, db } from "../config/firebase"
+
 // import { render } from 'react-dom';
 
 
-class ProfilePage extends React.Component {
+class ProfilePage extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     state = { 
         name: null,
@@ -38,35 +44,17 @@ class ProfilePage extends React.Component {
     render() {
         const currUserEmail = auth.currentUser.email
         const name = this.state.name
-
         return (
             <>
-            <Typography variant="h6" style={{ flexGrow: 1, textAlign: "center", left:180 }}>
-            <p>Name: {name}</p>
-            <p>Email: {currUserEmail}</p>
-            {/* <input 
-                type="file" 
-                id="imageInput" 
-                hidden="hidden"
-                onChange={this.handleImageChange}
-            />
-            <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-            >
-                <AccountCircle />
-            </IconButton>
 
-            <IconButton onClick={this.handleEditPicture} className="button">
-                <EditIcon color = "primary"/>
-            </IconButton> */}
-
-                </Typography>
 
                 <Box>
-                    <h1>Your Schedule</h1>
+                <Typography variant="h6" style={{ flexGrow: 1, textAlign: "center", left:180 }}>
+                {/* <img src={auth.currentUser.avatar_url} />  */}
+                <h4>Name: {name}</h4>
+                <h4>Email: {currUserEmail}</h4>
+                </Typography>
+                    <h4>Your Schedule:</h4>
                     
                     <Schedule />
                 </Box>

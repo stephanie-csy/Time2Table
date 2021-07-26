@@ -165,8 +165,13 @@ class FriendsPage extends React.Component {
           this.state.data &&
           this.state.data.map(user => {
             return (
+
               <div>
-                <Link to={`/profile/${user.email}`} activeClassName="current">{user.email}</Link>
+
+                         
+                {/* <Link to={`${user.email}`} activeClassName="current">{user.email}</Link> */}
+                <Link to={"/DummyProfile"} activeClassName="current">{user.email}</Link>
+
                 {/* <button onClick={deleteFriend(auth.currentUser.email, user.friend)}>
                     Delete
                 </button> */}

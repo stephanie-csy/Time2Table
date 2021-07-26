@@ -7,3 +7,4 @@ export { default as SettingsPage } from "./SettingsPage";
 // export { default as PageLogin } from "../PageLogin";
 export { default as AddFriendsPage } from "./AddFriendsPage";
 export { default as CreateGroupPage } from "./CreateGroupPage";
+export { default as DummyProfile } from "./DummyProfile";

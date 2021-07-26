@@ -19,7 +19,8 @@ import {
   ProfilePage, 
   SettingsPage, 
   AddFriendsPage, 
-  CreateGroupPage 
+  CreateGroupPage,
+  DummyProfile
 } from "../pages";
 
 import HomePage from "../pages/HomePage"
@@ -138,6 +139,7 @@ function NavigationBar(props) {
               <Route path="/SettingsPage" exact component={() => <SettingsPage />} />
               <Route path="/AddFriendsPage" exact component={() => <AddFriendsPage />} />
               <Route path="/CreateGroupPage" exact component={() => <CreateGroupPage />} />
+              <Route path="/DummyProfile" exact component={() => <DummyProfile />} />
             </Switch>
           </main>
         </BrowserRouter>

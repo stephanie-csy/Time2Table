@@ -168,7 +168,10 @@ class GroupsPage extends React.Component {
               {user.members.map(member => {
                 return (
                   <div>
-                  <Link to={`/profile/${member}`} activeClassName="current">{member}</Link>
+                  {/* <Link to={`/profile/${member}`} activeClassName="current">{member}</Link> */}
+                  
+                  <Link to={"/DummyProfile"} activeClassName="current">{member}</Link>
+
                   </div>
                 )
               }

@@ -32,15 +32,15 @@ class GroupsPage extends React.Component {
   }
 
   componentDidMount(){
-    // I CHEATED HERE
-    db.collection('groups').doc('besties').get().then(
-      doc => {
-        const users = []
-          const data = doc.data()
-          users.push(data)
-          this.setState({ data: users })  
-          }
-    )
+
+    db.collection('groups').where('members', 'array-contains', auth.currentUser.email).get().then(
+      snapshot => {
+        snapshot.docs.forEach(doc => {
+          this.setState(old => ({
+            data: [...old.data, doc.data()]
+          }));
+        })
+    })
     .catch( error => console.log(error))
   }
 
@@ -159,6 +159,26 @@ class GroupsPage extends React.Component {
               }
             ]}
           />
+
+    {         
+      this.state.data &&
+          this.state.data.map(user => {
+            return (
+              <div>
+              {user.members.map(member => {
+                return (
+                  <div>
+                  <Link to={`/profile/${member}`} activeClassName="current">{member}</Link>
+                  </div>
+                )
+              }
+        )}
+        </div>
+      );
+    })
+  }
+
+
           </Box>
         </div>
       </MuiThemeProvider>

@@ -30,7 +30,7 @@ function AddFriendsPage() {
 
         db.collection('users').doc(sendingUser).update({
             pendingSentFriendReqs: receivingFriend })
-        }      
+        }
         
         setReceivingFriend("")
     }

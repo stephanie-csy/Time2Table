@@ -18,8 +18,6 @@ class HomePage extends React.Component {
         receivedFriendReqs: [],
         gotPendingFriends: false,
         groupName: null,
-        groupAdminEmail: null,
-        groupAdminName: null,
         gotPendingGroups: false,
         receivedPendingGroupReqs: [],
         membersArray: [],
@@ -57,16 +55,6 @@ class HomePage extends React.Component {
                 }
                 this.setState({ receivedPendingGroupReqs: users })
 
-                // get admin's email
-                this.setState({ groupAdminEmail: doc.get("pendingGroupReqsUser") })
-                
-                // get name of admin
-                db.collection('users').where('email', '==', this.state.groupAdminEmail).get().then(querySnapshot => {
-                    querySnapshot.forEach(documentSnapshot => {
-                        this.setState({ groupAdminName: documentSnapshot.get("name") })
-                    });
-                });
-
                 // get group name
                 this.setState({ groupName: doc.get("pendingGroupReqsGroupName") })
 
@@ -95,7 +83,6 @@ class HomePage extends React.Component {
                     }));
                     })
                 }
-                
             
                 // check if have pending friend reqs
                 if (this.state.receivedFriendReqs !== null && this.state.receivedFriendReqs.length !== 0) {
@@ -122,8 +109,6 @@ class HomePage extends React.Component {
         const senderName = this.state.senderName
 
         const groupName = this.state.groupName
-        const groupAdminEmail= this.state.groupAdminEmail
-        const groupAdminName = this.groupAdminName
         const gotPendingGroups = this.state.gotPendingGroups
         const receivedPendingGroupReqs = this.state.receivedPendingGroupReqs
         const acceptedMembersArray = this.state.acceptedMembersArray

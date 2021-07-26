@@ -8,17 +8,12 @@ import Typography from '@material-ui/core/Typography';
 // import AccountCircle from '@material-ui/icons/AccountCircle';
 // import EditIcon from '@material-ui/icons/Edit';
 
-import { Link } from 'react-router-dom';
 import { auth, db } from "../config/firebase"
 
 // import { render } from 'react-dom';
 
 
 class ProfilePage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     state = { 
         name: null,
     }

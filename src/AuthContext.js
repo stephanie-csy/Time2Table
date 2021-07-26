@@ -49,6 +49,12 @@ export function AuthProvider({ children }) {
 
   function updatePassword(password) {
     return currentUser.updatePassword(password)
+    .then((resp) => { return db.collection('users').doc(resp.user.email)
+      .update({
+        password: password,
+      })
+    }
+    )
   }
 
   useEffect(() => {

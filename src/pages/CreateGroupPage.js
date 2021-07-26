@@ -17,18 +17,10 @@ function CreateGroupPage() {
     const [receivingFriend9, setReceivingFriend9] = useState("");
     const [receivingFriend10, setReceivingFriend10] = useState("");
     const sendingUser = auth.currentUser.email;
-    const [adminName, setAdminName] = useState("")
 
     function sendGroupRequest() {
         //can send urself
         //cannot send same person twice
-
-        // get admin's name
-        db.collection('users').where('email', '==', auth.currentUser.email).get().then(querySnapshot => {
-            querySnapshot.forEach(documentSnapshot => {
-                setAdminName(documentSnapshot.get("name"))
-            });
-        });
 
         // put sender's request in receiver's pendingGroupReqsUser and pendingGroupReqsGroupName
         if (receivingFriend1 !== null) { 
@@ -163,6 +155,18 @@ function CreateGroupPage() {
             admin: true,
             member: true
         })
+
+        setGroupName("")
+        setReceivingFriend1("")
+        setReceivingFriend2("")
+        setReceivingFriend3("")
+        setReceivingFriend4("")
+        setReceivingFriend5("")
+        setReceivingFriend6("")
+        setReceivingFriend7("")
+        setReceivingFriend8("")
+        setReceivingFriend9("")
+        setReceivingFriend10("")
     }
 
     return (
